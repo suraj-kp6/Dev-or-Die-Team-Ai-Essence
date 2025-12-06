@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Processed</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e8f4fc; 
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        h2 {
+            color: #0b4f81; 
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #0b4f81;
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            border-radius: 6px;
+            border: 1px solid #bcd0e7;
+            padding: 12px;
+            resize: vertical;
+            background: #f7fbff;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #bcd0e7;
+            background: #f7fbff;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-left: 10px;
+            background-color: #0b4f81;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0a3e66;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background-color: #1d7ddc;
+            margin-bottom: 20px;
+            text-decoration: none;
+            padding: 10px 16px;
+            color: white;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background-color: #1368b5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        
+        <a class="back-btn" href="/">← Back to Home</a>
+
+        <h2>Uploaded File!!</h2>
+
+        <div class="card">
+            <h3>Filename:</h3>
+            <p>{{ filename }}</p>
+        </div>
+
+        
+        <div class="card">
+            <h3>Extracted Text:</h3>
+            <textarea readonly>{{ text }}</textarea>
+        </div>
+
+        <div class="card">
+            <h3>Summary:</h3>
+            <textarea readonly>{{ summary }}</textarea>
+        </div>
+
+        <div class="card">
+            <h3>Category:</h3>
+            <p><strong>{{ category }}</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>Semantic Search</h3>
+            <form action="/search" method="POST">
+                <input type="text" name="query" placeholder="Type your search…" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

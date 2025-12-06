@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Files</title>
+    <style>
+        body {
+            background: #e8f4fc;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0b4f81;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #0b4f81;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #d0e3f5;
+        }
+
+        tr:hover {
+            background: #f0f8ff;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background-color: #1d7ddc;
+            margin-bottom: 20px;
+            text-decoration: none;
+            padding: 10px 16px;
+            color: white;
+            border-radius: 6px;
+        }
+
+        .back-btn:hover {
+            background-color: #1368b5;
+        }
+
+        .view-btn {
+            background-color: #0b4f81;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .view-btn:hover {
+            background-color: #08395c;
+        }
+        .delete-btn {
+            background-color: #023255;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .delete-btn:hover {
+            background-color: #08395c;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <a class="back-btn" href="/">← Back to Home</a>
+
+    <h2>Uploaded Files</h2>
+
+    <table>
+        <tr>
+            <th>Serial_Number</th>
+            <th>Filename</th>
+            <th>Action</th>
+        </tr>
+
+        {% for f in files %}
+        <tr>
+            <td>{{ f.Serial_Number }}</td>
+            <td>{{ f.Name }}</td>
+            <td>
+                <a class="view-btn" href="/view/{{f.File_id}}">View</a>
+                <a class="delete-btn" href="/delete/{{f.File_id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

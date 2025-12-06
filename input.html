@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc Ranger Intelligence</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:color(rgb(120, 183, 218))
+
+        }
+          h1, h2 {
+            color: rgb(75,175,200);
+            font-weight: 700;
+          }
+          Header{
+            margin-top:20px;
+          }
+          p {
+
+            text-align: center;
+            color:rgb(220,230,240)
+            font-size: 17px;
+            line-height: 26px;
+            width: 85%;
+            margin: auto;
+        }
+         div {
+            width: 85%;
+            margin: auto;
+            padding: 18px;
+            border-radius: 10px;
+            background: rgb(97, 170, 201);
+            align-items: center;
+            gap: 25px;
+            display: flex;
+
+        }
+
+         img {
+            width: 300px;
+            height: 300px;
+            border-radius: 12px;
+            margin-left: 15px;
+        }
+        b {
+            color:rgb(25,75,95);
+        }
+        input[type="file"] {
+            font-size: 15px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 2px solid #f8b799;
+        }
+        
+        button {
+            padding: 8px 18px;
+            border: none;
+            background: #000000;
+            color: rgb(247, 248, 247);
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        form {
+    width: 85%;
+    margin: 20px auto;
+    text-align: left;
+}
+
+    </style>
+
+
+</head>
+
+<Header align="center"><h1>Welcome</h1></Header>
+<header align="center"><h2>Doc Ranger Intelligence</h2></header>
+
+<body bgcolor="white">
+    <p>
+            Every tool you need to use PDFs, at your fingertips.
+            All are 100% FREE and easy to use! <br>
+            Document upload, Text extraction, Categorization, Summaries, 
+            with just a few clicks.
+    </p>
+
+    <div>
+        <img src="dev.png" alt="loading"/>
+
+        <p style="text-align: left;">
+            <b>Doc Ranger Intelligence</b> is a document-processing system 
+            that uses AI to handle, understand, and organize files. <br><br>
+            
+            You can think of it as a smart tool that helps you manage documents more easily. <br><br>
+
+            The main purpose of Doc Ranger is to make working with documents easy by: <br><br>
+
+            Reducing manual work<br>
+            Automating classification<br>
+            Extracting important information<br>
+            Helping users find documents instantly<br>
+            Understanding the content of documents<br>
+        </p>  
+    </div>
+
+    <p style="text-align: left;"><b>Upload File</b></p>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">Upload</button>
+        <button type="button" onclick="window.location.href='/files'">
+        View Previous Files
+    </button>
+    </form> 
+</body>
+</html>
