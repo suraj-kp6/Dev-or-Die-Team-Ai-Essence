@@ -13,7 +13,7 @@ app.config["MYSQL_HOST"] = 'localhost'
 app.config["MYSQL_USER"] = 'root'
 app.config["MYSQL_DB"] = 'file_db'
 db = MySQL(app)
-groq_client = Groq(api_key="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")
+groq_client = Groq(api_key="Enter API key")
 emb = SentenceTransformer("all-MiniLM-L6-v2")
 
 def chunk_text(text, max_length=500):
@@ -126,4 +126,5 @@ def deletefile(File_id):
     db.connection.commit()
     cur.close()
     return redirect(url_for("database"))
+
 app.run(debug = True)
