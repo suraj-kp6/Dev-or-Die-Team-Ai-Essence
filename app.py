@@ -13,7 +13,7 @@ app.config["MYSQL_HOST"] = 'localhost'
 app.config["MYSQL_USER"] = 'root'
 app.config["MYSQL_DB"] = 'file_db'
 db = MySQL(app)
-genai.configure(api_key="AIzaSyAOGBWVs2WlMdnfobywTOLjI8cfadKAzTA")
+genai.configure(api_key="Enter your Gemini key")
 model = genai.GenerativeModel("gemini-2.5-flash")
 emb = SentenceTransformer("all-MiniLM-l6-v2")
 
@@ -136,3 +136,4 @@ def deletefile(File_id):
     cur.close()
     return redirect(url_for("database"))
 app.run(debug = True)
+
