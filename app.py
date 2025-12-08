@@ -1,7 +1,7 @@
 from flask import Flask , render_template,request,redirect,url_for
-from flask_mysqldb import MySQL,MySQLdb  # type: ignore
-from PyPDF2 import PdfReader
-from groq import Groq
+from flask_mysqldb import MySQL,MySQLdb 
+import google.generativeai as genai
+from pdf2image import convert_from_path as convert
 from sentence_transformers import SentenceTransformer
 import json
 import numpy
@@ -13,9 +13,24 @@ app.config["MYSQL_HOST"] = 'localhost'
 app.config["MYSQL_USER"] = 'root'
 app.config["MYSQL_DB"] = 'file_db'
 db = MySQL(app)
-groq_client = Groq(api_key="Enter API key")
-emb = SentenceTransformer("all-MiniLM-L6-v2")
+genai.configure(api_key="AIzaSyAOGBWVs2WlMdnfobywTOLjI8cfadKAzTA")
+model = genai.GenerativeModel("gemini-2.5-flash")
+emb = SentenceTransformer("all-MiniLM-l6-v2")
 
+def pdf_to_image(path):
+    pages = convert(path,dpi=200)
+    return pages
+def text_from_image(img):
+    response = model.generate_content(["Extract all readable text from this image accurately:",img])
+    return response.text.strip()
+def ocr(path):
+    images = pdf_to_image(path)
+    text =""
+    for i,img in enumerate(images):
+        print("Processing page{i+1}...")
+        page_text = text_from_image(img)
+        text += page_text +"\n\n"
+    return text
 def chunk_text(text, max_length=500):
     sentences = text.split(". ")
     chunks = []
@@ -41,24 +56,18 @@ def upload():
      name = file.filename
      if name!="":
         file.save("uploaded.pdf")
-        reader = PdfReader("uploaded.pdf") 
-        text = ""
-        for page in reader.pages:
-            ext = page.extract_text()
-            if ext:
-                text += ext + "\n"
+        if name.lower().endswith(".pdf"):
+           text = ocr("uploaded.pdf")  
+        else:
+           text = file.read().decode("utf-8")
         #summarising
-        response = groq_client.chat.completions.create(model="llama-3.1-8b-instant",messages=[{"role":"system","content":"Summarize this"},{"role":"user","content":text}])
-        summary=response.choices[0].message.content.strip()
+        summary = model.generate_content("Please summarise the document text provided and give the summary in points").text
         #categorising
-        category_response = groq_client.chat.completions.create(model="llama-3.1-8b-instant",
-        messages=[{"role": "system", "content": "Read the document and classify it into ONE category from the following: mission briefing, enemy report, megazord maintenance, research document, intelligence note, strategy plan. Return only the category name."},{"role": "user", "content": text}])
-        category = category_response.choices[0].message.content.strip()
+        category = model.generate_content("Read the document and classify it into one category fro, the following : [Research document, story, intelligence report, mission briefing ],  If it does not fit to any category then give it your own category but return category only nothing else\n\n{text}").text.strip()
         #embeddings for semantic search
-        
-        embedding_vector = emb.encode(text).tolist()
+        emb_vector = emb.encode(text).tolist()
         global emb_json
-        emb_json = json.dumps(embedding_vector)
+        emb_json = json.dumps(emb_vector)
         #storing in database
         cur = db.connection.cursor()
         query = "Insert into uploaded_files(Filename,File,Filetext,Summary,Category,Embeddings) values(%s,%s,%s,%s,%s,%s)"
@@ -126,5 +135,4 @@ def deletefile(File_id):
     db.connection.commit()
     cur.close()
     return redirect(url_for("database"))
-
 app.run(debug = True)
