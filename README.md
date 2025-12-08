@@ -12,7 +12,9 @@ PS:4 Intelligent Document Console
   > Html and CSS for Frontend
   > Flask used for Backend
   > MySQL(XAMPP server) for database management , storing uploaded files
-  > Groq API for AI tasks
+  > Google-Generative Ai(Gemini)'s API for AI tasks
+  > SentenceTransformer for embeddings
+  > pdf2image and poppler to convert pdf into image 
 3.API documentation:
   >POST (/upload) renders process.html
   >POST (/search) renders search_result.html
@@ -35,14 +37,17 @@ PS:4 Intelligent Document Console
     >select file_db and go to import
     >download and choose file from repository named file_db.sql
     >click import
-  >Set your Groq Api key
-    >write your groq api key in line 16
-    >you can generate free key at  https://console.groq.com/keys
+  >Set your Gemini Api key
+    >write your gemini api key in line 16
+    >you can generate free key at https://aistudio.google.com/app/apikey
+  >Install and add Poppler to path 
+  >Install pdf2image using 'pip install google-generativeai pdf2image pillow'
   >Run the file app.py in your python virtualenv
 6.Future Improvements:
   >Masking and demasking
   >User authentication system
   >Multi-document combined summary
 7.AI/ML integration:
-  >Groq LLama 3.1-8B instant for summarising and catgorising
-  >Sentence Transformer for embeddings
+  >gemini-2.5-flash for summarising and catgorising
+  >SentenceTransformer(all-MiniLM-l6-v2) for embeddings
+  >pdf2image for converting pdf into images  
