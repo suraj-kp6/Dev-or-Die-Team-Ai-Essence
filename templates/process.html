@@ -1,124 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>File Processed</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #e8f4fc; 
-            font-family: Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Analysis</title>
 
-        .container {
-            width: 90%;
-            margin: 30px auto;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
-        h2 {
-            color: #0b4f81; 
-            text-align: center;
-        }
+body{
+    background:linear-gradient(135deg,#f5fbff,#ffffff);
+    color:#1d3557;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+header{
+    background:#1678c2;
+    color:white;
+    text-align:center;
+    padding:35px;
+    box-shadow:0 8px 24px rgba(22,120,194,.25);
+}
 
-        .card h3 {
-            color: #0b4f81;
-            margin-bottom: 8px;
-        }
+header h1{
+    font-size:38px;
+    margin-bottom:8px;
+}
 
-        textarea {
-            width: 100%;
-            height: 350px;
-            border-radius: 6px;
-            border: 1px solid #bcd0e7;
-            padding: 12px;
-            resize: vertical;
-            background: #f7fbff;
-        }
+.container{
+    width:88%;
+    max-width:1150px;
+    margin:35px auto;
+}
 
-        input[type="text"] {
-            width: 70%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #bcd0e7;
-            background: #f7fbff;
-        }
+.back-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#1678c2;
+    color:white;
+    padding:12px 18px;
+    border-radius:8px;
+    margin-bottom:25px;
+    font-weight:bold;
+}
 
-        button {
-            padding: 12px 20px;
-            margin-left: 10px;
-            background-color: #0b4f81;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 15px;
-            cursor: pointer;
-        }
+.back-btn:hover{
+    background:#0e5f9b;
+}
 
-        button:hover {
-            background-color: #0a3e66;
-        }
+.card{
+    background:white;
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:25px;
+    border:1px solid #dcefff;
+    box-shadow:0 10px 25px rgba(22,120,194,.12);
+}
 
-        .back-btn {
-            display: inline-block;
-            background-color: #1d7ddc;
-            margin-bottom: 20px;
-            text-decoration: none;
-            padding: 10px 16px;
-            color: white;
-            border-radius: 6px;
-        }
+.card h3{
+    color:#1678c2;
+    margin-bottom:14px;
+    font-size:22px;
+}
 
-        .back-btn:hover {
-            background-color: #1368b5;
-        }
-    </style>
+
+.btn{
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.primary{
+    background:#1678c2;
+    color:white;
+}
+
+.filename{
+    font-size:20px;
+    font-weight:bold;
+}
+
+textarea{
+    width:100%;
+    height:320px;
+    resize:vertical;
+    border:1px solid #cde7ff;
+    background:#f8fcff;
+    border-radius:10px;
+    padding:15px;
+    line-height:26px;
+}
+
+.summary{
+    height:300px;
+}
+
+.category{
+    background:#edf7ff;
+    border-left:5px solid #1678c2;
+    border-radius:10px;
+    padding:16px;
+    line-height:28px;
+    white-space:pre-wrap;
+}
+
+.ask-box{
+    display:flex;
+    gap:15px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.ask-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#1678c2;
+    color:white;
+    padding:14px 22px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.ask-btn:hover{
+    background:#0e5f9b;
+}
+
+.info{
+    color:#5b6777;
+}
+
+</style>
 </head>
 
 <body>
-    <div class="container">
 
-        
-        <a class="back-btn" href="/">← Back to Home</a>
+<header>
+<h1>📄 Document Analysis</h1>
+<p>AI-generated analysis of your uploaded document.</p>
+</header>
 
-        <h2>Uploaded File!!</h2>
+<div class="container">
 
-        <div class="card">
-            <h3>Filename:</h3>
-            <p>{{ filename }}</p>
-        </div>
+<a href="/" class="back-btn">⬅ Back to Home</a>
 
-        
-        <div class="card">
-            <h3>Extracted Text:</h3>
-            <textarea readonly>{{ text }}</textarea>
-        </div>
+<div class="card">
+<h3>Filename</h3>
+<p class="filename">{{ filename }}</p>
+</div>
 
-        <div class="card">
-            <h3>Summary:</h3>
-            <textarea readonly>{{ summary }}</textarea>
-        </div>
+<div class="card">
+<h3>AI Summary</h3>
+<textarea class="summary" readonly>{{ summary }}</textarea>
+</div>
 
-        <div class="card">
-            <h3>Category:</h3>
-            <p><strong>{{ category }}</strong></p>
-        </div>
+<div class="card">
+<h3>Document Category</h3>
+<div class="category">{{ category }}</div>
+</div>
 
-        <div class="card">
-            <h3>Semantic Search</h3>
-            <form action="/search" method="POST">
-                <input type="text" name="query" placeholder="Type your search…" required>
-                <button type="submit">Search</button>
-            </form>
-        </div>
+<div class="card">
+<h3>Extracted Text</h3>
+<textarea readonly>{{ text }}</textarea>
+</div>
 
-    </div>
+<div class="card">
+<h3>Ask AI About this Document</h3>
+<div class="ask-box">
+<div class="info">
+Ask questions about this document using the local Gemma 3 model.
+</div>
+
+<div class = "btn primary">
+<a  href="/ask/{{ file_id }}?from=process">🤖 Ask AI</a>
+</div>
+
+</div>
+</div>
+
+</div>
+
 </body>
 </html>

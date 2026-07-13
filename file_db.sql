@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2025 at 05:09 PM
+-- Generation Time: Jul 12, 2026 at 09:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `file_chunks` (
   `id` int(11) NOT NULL,
-  `SRno` int(11) DEFAULT NULL,
-  `chunk_text` text DEFAULT NULL,
+  `SRno` int(11) NOT NULL,
+  `chunk_text` longtext DEFAULT NULL,
   `chunk_emb` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -43,11 +43,10 @@ CREATE TABLE `file_chunks` (
 CREATE TABLE `uploaded_files` (
   `SRno` int(11) NOT NULL,
   `Filename` varchar(100) NOT NULL,
-  `File` text NOT NULL,
-  `Filetext` text DEFAULT NULL,
+  `Filetext` longtext DEFAULT NULL,
   `Summary` text DEFAULT NULL,
   `Category` text DEFAULT NULL,
-  `Embeddings` text DEFAULT NULL
+  `Embeddings` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -75,13 +74,13 @@ ALTER TABLE `uploaded_files`
 -- AUTO_INCREMENT for table `file_chunks`
 --
 ALTER TABLE `file_chunks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `uploaded_files`
 --
 ALTER TABLE `uploaded_files`
-  MODIFY `SRno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `SRno` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -91,7 +90,7 @@ ALTER TABLE `uploaded_files`
 -- Constraints for table `file_chunks`
 --
 ALTER TABLE `file_chunks`
-  ADD CONSTRAINT `file_chunks_ibfk_1` FOREIGN KEY (`SRno`) REFERENCES `uploaded_files` (`SRno`);
+  ADD CONSTRAINT `file_chunks_ibfk_1` FOREIGN KEY (`SRno`) REFERENCES `uploaded_files` (`SRno`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

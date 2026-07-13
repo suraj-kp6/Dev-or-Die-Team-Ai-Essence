@@ -1,119 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doc Ranger Intelligence</title>
-
     <style>
-        body{
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
             font-family: Arial, Helvetica, sans-serif;
-            background:color(rgb(120, 183, 218))
 
         }
-          h1, h2 {
-            color: rgb(75,175,200);
-            font-weight: 700;
-          }
-          Header{
-            margin-top:20px;
-          }
-          p {
 
+        body {
+
+            background: linear-gradient(135deg, #f5fbff, #ffffff);
+
+            color: #1d3557;
+        }
+
+        header {
+            background: #1678c2;
+            color: #fff;
+            padding: 42px;
             text-align: center;
-            color:rgb(220,230,240)
-            font-size: 17px;
-            line-height: 26px;
-            width: 85%;
-            margin: auto;
+            box-shadow: 0 8px 24px rgba(22, 120, 194, .25);
         }
-         div {
-            width: 85%;
-            margin: auto;
-            padding: 18px;
-            border-radius: 10px;
-            background: rgb(97, 170, 201);
-            align-items: center;
-            gap: 25px;
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: .95;
+        }
+
+        .hero {
+            width: 90%;
+            margin: 30px auto;
             display: flex;
-
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
         }
 
-         img {
-            width: 300px;
-            height: 300px;
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 38px;
+            color: #1678c2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 32px;
+            color: #4f5d75;
+        }
+
+        .hero img {
+            width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 18px 40px rgba(22, 120, 194, .18);
+        }
+
+        .features {
+            width: 90%;
+            margin: 20px auto 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+            border-top: 6px solid #1678c2;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 35px rgba(22, 120, 194, .22);
+            border-top-color: #0e5f9b;
+        }
+
+        .icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: #e8f4ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 34px;
+        }
+
+        .card h3 {
+            color: #1678c2;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #5b6777;
+            line-height: 26px;
+        }
+
+        .upload {
+            width: 72%;
+            margin: 45px auto;
+            background: #fff;
+            border-radius: 22px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(22, 120, 194, .12);
+            border: 1px solid #dcefff;
+        }
+
+        .upload h2 {
+            color: #1678c2;
+            margin-bottom: 15px;
+        }
+
+        .upload p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        input[type=file] {
+            width: 100%;
+            padding: 18px;
+            border: 2px dashed #6ab0e6;
             border-radius: 12px;
-            margin-left: 15px;
-        }
-        b {
-            color:rgb(25,75,95);
-        }
-        input[type="file"] {
-            font-size: 15px;
-            padding: 8px;
-            border-radius: 5px;
-            border: 2px solid #f8b799;
-        }
-        
-        button {
-            padding: 8px 18px;
-            border: none;
-            background: #000000;
-            color: rgb(247, 248, 247);
-            border-radius: 5px;
-            font-size: 15px;
+            background: #edf7ff;
             cursor: pointer;
-            margin-left: 10px;
+            margin-bottom: 30px;
         }
-        form {
-    width: 85%;
-    margin: 20px auto;
-    text-align: left;
-}
 
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #1678c2;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            background: #0e5f9b;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(22, 120, 194, .35);
+        }
+
+        .secondary {
+            background: #fff;
+            color: #1678c2;
+            border: 2px solid #1678c2;
+        }
+
+        .secondary:hover {
+            background: #1678c2;
+            color: #fff;
+        }
+
+        .search-btn {
+            background: #eef7ff;
+            color: #1678c2;
+            border: 2px solid #b9dcff;
+        }
+
+        .search-btn:hover {
+            background: #1678c2;
+            color: #fff;
+            border-color: #1678c2;
+        }
+
+        footer {
+            margin: 45px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        @media(max-width:900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center
+            }
+
+            .hero img {
+                width: 260px
+            }
+
+            .upload {
+                width: 90%
+            }
+        }
     </style>
-
-
 </head>
 
-<Header align="center"><h1>Welcome</h1></Header>
-<header align="center"><h2>Doc Ranger Intelligence</h2></header>
+<body>
+    <header>
+        <h1>📄 Doc Ranger Intelligence</h1>
+        <p>AI Powered Document Processing & Semantic Search</p>
+    </header>
 
-<body bgcolor="white">
-    <p>
-            Every tool you need to use PDFs, at your fingertips.
-            All are 100% FREE and easy to use! <br>
-            Document upload, Text extraction, Categorization, Summaries, 
-            with just a few clicks.
-    </p>
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Analyze Documents in Seconds</h2>
+            <p>Upload PDF, Image, or TXT files to automatically extract text, generate AI summaries, classify documents,
+                and perform semantic search using completely offline AI models.</p>
+        </div>
+        <img src="{{ url_for('static', filename='dev.png') }}" alt="Doc Ranger">
+    </section>
 
-    <div>
-        <img src="dev.png" alt="loading"/>
+    <section class="features">
+        <div class="card">
+            <div class="icon">📄</div>
+            <h3>OCR Extraction</h3>
+            <p>Extract text from scanned PDFs and images using EasyOCR.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🤖</div>
+            <h3>AI Summary</h3>
+            <p>Generate concise summaries with the local Gemma 3 model.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🏷️</div>
+            <h3>Categorization</h3>
+            <p>Automatically classify uploaded documents into meaningful categories.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🔍</div>
+            <h3>Semantic Search</h3>
+            <p>Find the most relevant document sections using AI embeddings.</p>
+        </div>
+    </section>
 
-        <p style="text-align: left;">
-            <b>Doc Ranger Intelligence</b> is a document-processing system 
-            that uses AI to handle, understand, and organize files. <br><br>
-            
-            You can think of it as a smart tool that helps you manage documents more easily. <br><br>
+    <section class="upload">
+        <h2>Upload & Analyze Document</h2>
+        <p>Supported Formats: PDF • PNG • JPG • JPEG • TXT</p>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <div class="buttons">
+                <button type="submit">🚀 Analyze Document</button>
+                <button class="secondary" type="button" onclick="window.location.href='/files'">📂 Document
+                    Library</button>
+                <button class="search-btn" type="button" onclick="window.location.href='/search'">🔍 Semantic
+                    Search</button>
+            </div>
+        </form>
+    </section>
 
-            The main purpose of Doc Ranger is to make working with documents easy by: <br><br>
-
-            Reducing manual work<br>
-            Automating classification<br>
-            Extracting important information<br>
-            Helping users find documents instantly<br>
-            Understanding the content of documents<br>
-        </p>  
-    </div>
-
-    <p style="text-align: left;"><b>Upload File</b></p>
-
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" />
-        <button type="submit">Upload</button>
-        <button type="button" onclick="window.location.href='/files'">
-        View Previous Files
-    </button>
-    </form> 
+    <footer>Built with Flask • Ollama • EasyOCR • Sentence Transformers</footer>
 </body>
+
 </html>
